@@ -1,9 +1,17 @@
 # Driver Drowsiness Detection App
 
-A Flutter application that connects to a Flask backend for real-time driver drowsiness detection.
+A real-time Driver Drowsiness Detection System that monitors the driver’s alertness using facial analysis. The system triggers audio alerts and sends warnings when signs of drowsiness are detected.
+It consists of a Flask-based backend (AI detection) and a Flutter mobile frontend (user interface & alerts).
 
 ## Features
+### Backend (Flask)
 
+- Real-time eye-blink detection using OpenCV and MediaPipe
+- Flask API with /status endpoint returning driver state
+- Beautiful UI with status indicators
+- Lightweight, designed to run on low-power systems (e.g., Raspberry Pi)
+
+### Frontend (Flutter)
 - Real-time drowsiness monitoring
 - Audio alerts when drowsiness is detected
 - Beautiful UI with status indicators
@@ -11,39 +19,34 @@ A Flutter application that connects to a Flask backend for real-time driver drow
 - Connection status monitoring
 
 ## Setup Instructions
+###Backend Setup
 
-### 1. Install Dependencies
+#### 1. Create a Virtual env and install dependencies
 
-Make sure you have Flutter installed and run:
+```bash
+python -m venv venv
+venv\Scripts\activate        # On Windows
+pip install -r requirements.txt
+
+```
+
+#### 2. Run the Flask server
+
+```bash
+python app.py
+```
+
+### Frontend Setup
+#### 1. Install dependencies
 
 ```bash
 flutter pub get
 ```
-
-### 2. Update Server IP
-
-In `lib/main.dart`, update the `serverUrl` variable with your Flask server's IP address:
-
-```dart
-String serverUrl = "http://YOUR_SERVER_IP:5000";
-```
-
-### 3. Ensure Audio File
-
-Make sure `alarm.mp3` is in the `assets/` folder.
-
-### 4. Run the App
-
+#### 2. Run the app
 ```bash
 flutter run
 ```
 
-## Backend Requirements
-
-Your Flask backend should have:
-- A `/status` endpoint that returns JSON with `{"drowsy": boolean}`
-- Running on port 5000
-- CORS enabled for mobile access
 
 ## Usage
 
